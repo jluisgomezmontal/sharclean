@@ -30,7 +30,9 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  Twitter
+  Twitter,
+  Moon,
+  Sun
 } from 'lucide-react'
 
 // Import hero images
@@ -77,6 +79,14 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showNavAndButtons, setShowNavAndButtons] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check localStorage, default to light mode
+    const saved = localStorage.getItem('darkMode')
+    if (saved !== null) {
+      return JSON.parse(saved)
+    }
+    return false // Default to light mode
+  })
 
   const heroSlides = [
     {
@@ -129,6 +139,29 @@ function App() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Apply dark mode and save to localStorage
+  useEffect(() => {
+    console.log('Dark mode state:', darkMode) // Debug
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+    localStorage.setItem('darkMode', JSON.stringify(darkMode))
+  }, [darkMode])
+
+  // Initial cleanup - ensure light mode on first load
+  useEffect(() => {
+    if (!darkMode) {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
+
+  const toggleDarkMode = () => {
+    console.log('Toggling from', darkMode, 'to', !darkMode) // Debug
+    setDarkMode(prevMode => !prevMode)
+  }
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
@@ -193,9 +226,9 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Static Navigation - Always visible at top */}
-      <nav className="relative w-full bg-white/95 backdrop-blur-sm shadow-sm border-b-4 border-blue-600 z-40">
+      <nav className="relative w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm border-b-4 border-blue-600 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -203,51 +236,69 @@ function App() {
             </div>
             
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
-              <button onClick={() => scrollToSection('quienes-somos')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+            <div className="hidden md:flex items-center space-x-8">
+              <button onClick={() => scrollToSection('quienes-somos')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Quiénes somos
               </button>
-              <button onClick={() => scrollToSection('servicios')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('servicios')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Servicios
               </button>
-              <button onClick={() => scrollToSection('beneficios')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('beneficios')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Beneficios y Alcances
               </button>
-              <button onClick={() => scrollToSection('clientes')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('clientes')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Clientes
               </button>
-              <button onClick={() => scrollToSection('contacto')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('contacto')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Contacto
+              </button>
+              
+              {/* Dark Mode Toggle */}
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700" />}
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden text-gray-700"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            {/* Mobile Menu Button and Dark Mode Toggle */}
+            <div className="md:hidden flex items-center gap-3">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700 dark:text-gray-200" />}
+              </button>
+              <button 
+                className="text-gray-700 dark:text-gray-200"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
+          <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <button onClick={() => scrollToSection('quienes-somos')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('quienes-somos')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Quiénes somos
               </button>
-              <button onClick={() => scrollToSection('servicios')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('servicios')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Servicios
               </button>
-              <button onClick={() => scrollToSection('beneficios')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('beneficios')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Beneficios y Alcances
               </button>
-              <button onClick={() => scrollToSection('clientes')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('clientes')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Clientes
               </button>
-              <button onClick={() => scrollToSection('contacto')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('contacto')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Contacto
               </button>
             </div>
@@ -256,7 +307,7 @@ function App() {
       </nav>
 
       {/* Fixed Navigation - Appears on scroll */}
-      <nav className={`fixed w-full bg-white/95 backdrop-blur-sm shadow-sm border-b-4 border-blue-600 z-50 transition-all duration-500 ${
+      <nav className={`fixed w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm border-b-4 border-blue-600 z-50 transition-all duration-500 ${
         showNavAndButtons ? 'top-0 opacity-100' : '-top-20 opacity-0'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -266,51 +317,69 @@ function App() {
             </div>
             
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
-              <button onClick={() => scrollToSection('quienes-somos')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+            <div className="hidden md:flex items-center space-x-8">
+              <button onClick={() => scrollToSection('quienes-somos')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Quiénes somos
               </button>
-              <button onClick={() => scrollToSection('servicios')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('servicios')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Servicios
               </button>
-              <button onClick={() => scrollToSection('beneficios')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('beneficios')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Beneficios y Alcances
               </button>
-              <button onClick={() => scrollToSection('clientes')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('clientes')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Clientes
               </button>
-              <button onClick={() => scrollToSection('contacto')} className="text-gray-700 hover:text-blue-600 transition font-medium">
+              <button onClick={() => scrollToSection('contacto')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Contacto
+              </button>
+              
+              {/* Dark Mode Toggle */}
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700" />}
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden text-gray-700"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            {/* Mobile Menu Button and Dark Mode Toggle */}
+            <div className="md:hidden flex items-center gap-3">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700 dark:text-gray-200" />}
+              </button>
+              <button 
+                className="text-gray-700 dark:text-gray-200"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
+          <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <button onClick={() => scrollToSection('quienes-somos')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('quienes-somos')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Quiénes somos
               </button>
-              <button onClick={() => scrollToSection('servicios')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('servicios')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Servicios
               </button>
-              <button onClick={() => scrollToSection('beneficios')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('beneficios')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Beneficios y Alcances
               </button>
-              <button onClick={() => scrollToSection('clientes')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('clientes')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Clientes
               </button>
-              <button onClick={() => scrollToSection('contacto')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition">
+              <button onClick={() => scrollToSection('contacto')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Contacto
               </button>
             </div>
@@ -459,9 +528,9 @@ function App() {
       </section>
 
       {/* Quiénes Somos Section */}
-      <section id="quienes-somos" className="py-20 bg-white">
+      <section id="quienes-somos" className="py-20 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
             Quiénes Somos
           </h2>
           
@@ -475,11 +544,11 @@ function App() {
               />
             </div>
             <div className="order-1 md:order-2">
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                <span className="font-bold text-blue-600">Sharclean</span> comienza operaciones en el año 2012, 
+              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <span className="font-bold text-blue-600 dark:text-blue-400">Sharclean</span> comienza operaciones en el año 2012, 
                 especializada en el servicio de mantenimiento a inmuebles así como el servicio de limpieza profesional.
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                 Nos basamos en la fusión de técnicas, maquinaria especializada y desarrollo del recurso humano, 
                 en las áreas de servicio y mantenimiento a todo tipo de inmuebles, cumpliendo con los requerimientos 
                 y expectativas de nuestros clientes.
@@ -488,29 +557,29 @@ function App() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-2 hover:shadow-lg transition">
+            <Card className="border-2 hover:shadow-lg transition dark:bg-gray-700 dark:border-gray-600">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
-                  <Target className="h-8 w-8 text-blue-600" />
-                  <CardTitle>Misión</CardTitle>
+                  <Target className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                  <CardTitle className="dark:text-white">Misión</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300">
                   Brindar las mejores soluciones en condiciones óptimas de calidad, servicio y valor.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:shadow-lg transition">
+            <Card className="border-2 hover:shadow-lg transition dark:bg-gray-700 dark:border-gray-600">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
-                  <Award className="h-8 w-8 text-blue-600" />
-                  <CardTitle>Política de Calidad</CardTitle>
+                  <Award className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                  <CardTitle className="dark:text-white">Política de Calidad</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300">
                   Cumplir con todos los requisitos solicitados en trabajos de mantenimiento y limpieza especializada, 
                   logrando la satisfacción total de nuestros clientes.
                 </p>
@@ -521,12 +590,12 @@ function App() {
       </section>
 
       {/* Servicios Section */}
-      <section id="servicios" className="py-20 bg-gray-50">
+      <section id="servicios" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900 dark:text-white">
             Servicios
           </h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">
+          <p className="text-center text-gray-600 dark:text-gray-400 mb-12 text-lg">
             Contamos con una amplia variedad de servicios
           </p>
 
@@ -608,24 +677,24 @@ function App() {
       </section>
 
       {/* Beneficios y Alcances Section */}
-      <section id="beneficios" className="py-20 bg-white">
+      <section id="beneficios" className="py-20 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
             Beneficios y Alcances
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             {/* Beneficios Card */}
-            <Card className="border-2 border-blue-200">
+            <Card className="border-2 border-blue-200 dark:border-blue-800 dark:bg-gray-700">
               <CardHeader>
-                <CardTitle className="text-2xl text-blue-600">Beneficios</CardTitle>
+                <CardTitle className="text-2xl text-blue-600 dark:text-blue-400">Beneficios</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{benefit}</span>
+                      <CheckCircle2 className="h-6 w-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -642,16 +711,16 @@ function App() {
             </div>
 
             {/* Alcances Card */}
-            <Card className="border-2 border-green-200">
+            <Card className="border-2 border-green-200 dark:border-green-800 dark:bg-gray-700">
               <CardHeader>
-                <CardTitle className="text-2xl text-green-600">Alcances</CardTitle>
+                <CardTitle className="text-2xl text-green-600 dark:text-green-400">Alcances</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   {scope.map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{item}</span>
+                      <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 dark:text-gray-300">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -662,46 +731,36 @@ function App() {
       </section>
 
       {/* Clientes Section */}
-      <section id="clientes" className="py-20 bg-gray-50 overflow-hidden">
+      <section id="clientes" className="py-20 bg-gray-50 dark:bg-gray-900 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-900 dark:text-white">
             Nuestros Clientes
           </h2>
-          <p className="text-center text-gray-700 max-w-3xl mx-auto">
+          <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
             Confiamos en brindar servicios de calidad a empresas líderes en diversos sectores: 
             oficinas corporativas, hospitales, instituciones educativas, centros comerciales y más.
           </p>
         </div>
 
         {/* Infinite Scrolling Banner */}
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <div className="flex animate-scroll">
-            {/* First set of logos */}
-            {clients.map((client, index) => (
-              <div 
-                key={`client-1-${index}`} 
-                className="flex-shrink-0 mx-8 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                style={{ width: '200px', height: '120px' }}
-              >
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-            ))}
-            {/* Duplicate set for seamless loop */}
-            {clients.map((client, index) => (
-              <div 
-                key={`client-2-${index}`} 
-                className="flex-shrink-0 mx-8 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                style={{ width: '200px', height: '120px' }}
-              >
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
+            {/* Triple set of logos for seamless infinite loop */}
+            {[...Array(3)].map((_, setIndex) => (
+              <div key={`set-${setIndex}`} className="flex flex-shrink-0">
+                {clients.map((client, index) => (
+                  <div 
+                    key={`client-${setIndex}-${index}`} 
+                    className="flex-shrink-0 mx-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                    style={{ width: '200px', height: '120px' }}
+                  >
+                    <img 
+                      src={client.logo} 
+                      alt={client.name}
+                      className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                ))}
               </div>
             ))}
           </div>
@@ -766,12 +825,12 @@ function App() {
       </section>
 
       {/* Google Maps Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900 dark:text-white">
             Encuéntranos
           </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
             Visítanos en nuestra ubicación. Estamos listos para atenderte y resolver todas tus necesidades de limpieza y mantenimiento.
           </p>
           <div className="rounded-lg overflow-hidden shadow-2xl">
@@ -801,7 +860,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-gray-900 dark:bg-black text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             {/* Company Info */}
