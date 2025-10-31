@@ -1,0 +1,9 @@
+# robots.txt para Sharclean
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://sharclean.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
