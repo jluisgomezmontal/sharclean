@@ -743,28 +743,28 @@ function App() {
         </div>
 
         {/* Infinite Scrolling Banner */}
-        <div className="relative overflow-hidden">
-          <div className="flex animate-scroll">
-            {/* Triple set of logos for seamless infinite loop */}
-            {[...Array(3)].map((_, setIndex) => (
-              <div key={`set-${setIndex}`} className="flex flex-shrink-0">
-                {clients.map((client, index) => (
-                  <div 
-                    key={`client-${setIndex}-${index}`} 
-                    className="flex-shrink-0 mx-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                    style={{ width: '200px', height: '120px' }}
-                  >
-                    <img 
-                      src={client.logo} 
-                      alt={client.name}
-                      className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
+<div className="relative overflow-hidden">
+  <div className="flex animate-scroll">
+    {/* Duplicamos exactamente 2 veces */}
+    {[...Array(2)].map((_, setIndex) => (
+      <>
+        {clients.map((client, index) => (
+          <div 
+            key={`client-${setIndex}-${index}`} 
+            className="flex-shrink-0 mx-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+            style={{ width: '200px', height: '120px' }}
+          >
+            <img 
+              src={client.logo} 
+              alt={client.name}
+              className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+            />
           </div>
-        </div>
+        ))}
+      </>
+    ))}
+  </div>
+</div>
       </section>
 
       {/* Contacto Section */}
