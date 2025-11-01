@@ -470,8 +470,8 @@ function App() {
           </div>
           
           {/* Contact Info Cards */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto my-12">
-            <Card className="bg-white/80 backdrop-blur-sm">
+          <div className="hidden lg:grid lg:grid-cols-3 gap-6 max-w-4xl mx-auto my-12">
+            <Card className="bg-white/80 backdrop-blur-sm ">
               <CardContent className="pt-6">
                 <div className="text-center">
                   <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
