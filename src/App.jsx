@@ -587,6 +587,53 @@ function App() {
             </Card>
           </div>
         </div>
+                  {/* Contact Info Cards */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto my-12 lg:hidden">
+            <Card className="bg-white/80 backdrop-blur-sm ">
+              <CardContent className="pt-6">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
+                    <Phone className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h3 className="font-bold text-gray-900 mb-1">Llámenos</h3>
+                  <p className="text-sm text-gray-600 mb-2">Resuelva sus dudas ahora</p>
+                  <a href="tel:5529729014" className="text-lg font-bold text-blue-600 hover:text-blue-700">
+                    55 2972 9014
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
+                    <Mail className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h3 className="font-bold text-gray-900 mb-1">Contáctenos</h3>
+                  <p className="text-sm text-gray-600 mb-2">Pida un presupuesto</p>
+                  <a href="mailto:informes@sharclean.com.mx" className="text-sm font-bold text-blue-600 hover:text-blue-700 break-all">
+                    informes@sharclean.com.mx
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
+                    <CheckCircle2 className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h3 className="font-bold text-gray-900 mb-1">Horario</h3>
+                  <p className="text-sm text-gray-600 mb-2">Lunes a viernes</p>
+                  <p className="text-lg font-bold text-blue-600">
+                    10:00 am - 06:00 pm
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
       </section>
 
       {/* Servicios Section */}
