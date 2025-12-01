@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Button } from './components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './components/ui/card'
-import { 
-  Sparkles, 
-  Building2, 
-  Droplets, 
-  Sofa, 
-  Paintbrush, 
-  Leaf, 
-  Zap, 
-  Wrench, 
-  Hammer, 
+import {
+  Sparkles,
+  Building2,
+  Droplets,
+  Sofa,
+  Paintbrush,
+  Leaf,
+  Zap,
+  Wrench,
+  Hammer,
   Bug,
   Phone,
   Mail,
@@ -41,7 +41,7 @@ import slider3 from './assets/hero/slider-3.jpg'
 import slider4 from './assets/hero/slider-4.jpg'
 import slider5 from './assets/hero/slider-5.jpg'
 import slider6 from './assets/hero/slider-6.jpg'
-import Mapa from './assets/mapa.png'
+import Mapa from './assets/servmap.webp'
 
 // Import logo and about image
 import logo from './assets/logo.png'
@@ -229,7 +229,7 @@ function App() {
             <div className="flex items-center">
               <img src={logo} alt="Sharclean Logo" className="h-12 w-auto" />
             </div>
-            
+
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               <button onClick={() => scrollToSection('quienes-somos')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
@@ -250,7 +250,7 @@ function App() {
               <button onClick={() => scrollToSection('aviso-privacidad')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Aviso de Privacidad
               </button>
-              
+
               {/* Dark Mode Toggle */}
               <button
                 onClick={toggleDarkMode}
@@ -270,7 +270,7 @@ function App() {
               >
                 {darkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700 dark:text-gray-200" />}
               </button>
-              <button 
+              <button
                 className="text-gray-700 dark:text-gray-200"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
@@ -308,15 +308,14 @@ function App() {
       </nav>
 
       {/* Fixed Navigation - Appears on scroll */}
-      <nav className={`fixed w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm border-b-4 border-blue-600 z-50 transition-all duration-500 ${
-        showNavAndButtons ? 'top-0 opacity-100' : '-top-20 opacity-0'
-      }`}>
+      <nav className={`fixed w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm border-b-4 border-blue-600 z-50 transition-all duration-500 ${showNavAndButtons ? 'top-0 opacity-100' : '-top-20 opacity-0'
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <img src={logo} alt="Sharclean Logo" className="h-12 w-auto" />
             </div>
-            
+
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               <button onClick={() => scrollToSection('quienes-somos')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
@@ -337,7 +336,7 @@ function App() {
               <button onClick={() => scrollToSection('aviso-privacidad')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Aviso de Privacidad
               </button>
-              
+
               {/* Dark Mode Toggle */}
               <button
                 onClick={toggleDarkMode}
@@ -357,7 +356,7 @@ function App() {
               >
                 {darkMode ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-700 dark:text-gray-200" />}
               </button>
-              <button 
+              <button
                 className="text-gray-700 dark:text-gray-200"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
@@ -401,12 +400,11 @@ function App() {
           {heroSlides.map((slide, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
             >
-              <img 
-                src={slide.image} 
+              <img
+                src={slide.image}
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
@@ -438,9 +436,8 @@ function App() {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition ${
-                index === currentSlide ? 'bg-white' : 'bg-white/50'
-              }`}
+              className={`w-3 h-3 rounded-full transition ${index === currentSlide ? 'bg-white' : 'bg-white/50'
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
@@ -453,11 +450,10 @@ function App() {
             {heroSlides.map((slide, index) => (
               <div
                 key={index}
-                className={`transition-all duration-500 ${
-                  index === currentSlide 
-                    ? 'opacity-100 translate-y-0' 
+                className={`transition-all duration-500 ${index === currentSlide
+                    ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-4 absolute inset-x-0'
-                }`}
+                  }`}
               >
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
                   {slide.title}
@@ -475,7 +471,7 @@ function App() {
               <span className="text-blue-300">Mantenimiento y Limpieza</span>
             </h2>
           </div>
-          
+
           {/* Contact Info Cards */}
           <div className="hidden lg:grid lg:grid-cols-3 gap-6 max-w-4xl mx-auto my-12">
             <Card className="bg-white/80 backdrop-blur-sm ">
@@ -524,8 +520,8 @@ function App() {
             </Card>
           </div>
 
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
             onClick={() => scrollToSection('contacto')}
           >
@@ -540,24 +536,24 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
             Quiénes Somos
           </h2>
-          
+
           {/* Image and Text Layout */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
             <div className="order-2 md:order-1">
-              <img 
-                src={quienesImage} 
-                alt="Equipo Sharclean" 
+              <img
+                src={quienesImage}
+                alt="Equipo Sharclean"
                 className="rounded-lg shadow-xl w-full h-auto object-cover"
               />
             </div>
             <div className="order-1 md:order-2">
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                <span className="font-bold text-blue-600 dark:text-blue-400">Sharclean</span> comienza operaciones en el año 2012, 
+                <span className="font-bold text-blue-600 dark:text-blue-400">Sharclean</span> comienza operaciones en el año 2012,
                 especializada en el servicio de mantenimiento a inmuebles así como el servicio de limpieza profesional.
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                Nos basamos en la fusión de técnicas, maquinaria especializada y desarrollo del recurso humano, 
-                en las áreas de servicio y mantenimiento a todo tipo de inmuebles, cumpliendo con los requerimientos 
+                Nos basamos en la fusión de técnicas, maquinaria especializada y desarrollo del recurso humano,
+                en las áreas de servicio y mantenimiento a todo tipo de inmuebles, cumpliendo con los requerimientos
                 y expectativas de nuestros clientes.
               </p>
             </div>
@@ -587,60 +583,60 @@ function App() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 dark:text-gray-300">
-                  Cumplir con todos los requisitos solicitados en trabajos de mantenimiento y limpieza especializada, 
+                  Cumplir con todos los requisitos solicitados en trabajos de mantenimiento y limpieza especializada,
                   logrando la satisfacción total de nuestros clientes.
                 </p>
               </CardContent>
             </Card>
           </div>
         </div>
-                  {/* Contact Info Cards */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto my-12 lg:hidden">
-            <Card className="bg-white/80 backdrop-blur-sm ">
-              <CardContent className="pt-6">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
-                    <Phone className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-1">Llámenos</h3>
-                  <p className="text-sm text-gray-600 mb-2">Resuelva sus dudas ahora</p>
-                  <a href="tel:5529729014" className="text-lg font-bold text-blue-600 hover:text-blue-700">
-                    55 2972 9014
-                  </a>
+        {/* Contact Info Cards */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto my-12 lg:hidden">
+          <Card className="bg-white/80 backdrop-blur-sm ">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
+                  <Phone className="h-6 w-6 text-blue-600" />
                 </div>
-              </CardContent>
-            </Card>
+                <h3 className="font-bold text-gray-900 mb-1">Llámenos</h3>
+                <p className="text-sm text-gray-600 mb-2">Resuelva sus dudas ahora</p>
+                <a href="tel:5529729014" className="text-lg font-bold text-blue-600 hover:text-blue-700">
+                  55 2972 9014
+                </a>
+              </div>
+            </CardContent>
+          </Card>
 
-            <Card className="bg-white/80 backdrop-blur-sm">
-              <CardContent className="pt-6">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
-                    <Mail className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-1">Contáctenos</h3>
-                  <p className="text-sm text-gray-600 mb-2">Pida un presupuesto</p>
-                  <a href="mailto:informes@sharclean.com.mx" className="text-sm font-bold text-blue-600 hover:text-blue-700 break-all">
-                    informes@sharclean.com.mx
-                  </a>
+          <Card className="bg-white/80 backdrop-blur-sm">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
+                  <Mail className="h-6 w-6 text-blue-600" />
                 </div>
-              </CardContent>
-            </Card>
+                <h3 className="font-bold text-gray-900 mb-1">Contáctenos</h3>
+                <p className="text-sm text-gray-600 mb-2">Pida un presupuesto</p>
+                <a href="mailto:informes@sharclean.com.mx" className="text-sm font-bold text-blue-600 hover:text-blue-700 break-all">
+                  informes@sharclean.com.mx
+                </a>
+              </div>
+            </CardContent>
+          </Card>
 
-            <Card className="bg-white/80 backdrop-blur-sm">
-              <CardContent className="pt-6">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
-                    <CheckCircle2 className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-1">Horario</h3>
-                  <p className="text-sm text-gray-600 mb-2">Lunes a viernes</p>
-                  <p className="text-lg font-bold text-blue-600">
-                    10:00 am - 06:00 pm
-                  </p>
+          <Card className="bg-white/80 backdrop-blur-sm">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
+                  <CheckCircle2 className="h-6 w-6 text-blue-600" />
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                <h3 className="font-bold text-gray-900 mb-1">Horario</h3>
+                <p className="text-sm text-gray-600 mb-2">Lunes a viernes</p>
+                <p className="text-lg font-bold text-blue-600">
+                  10:00 am - 06:00 pm
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </section>
 
       {/* Servicios Section */}
@@ -689,30 +685,30 @@ function App() {
             {services.map((service, index) => {
               const Icon = service.icon
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer h-80"
                 >
                   {/* Service Image */}
-                  <img 
-                    src={service.image} 
+                  <img
+                    src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  
+
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                  
+
                   {/* Icon - Always Visible */}
                   <div className="absolute top-4 right-4 p-3 bg-white/20 backdrop-blur-sm rounded-full">
                     <Icon className="h-6 w-6 text-white" />
                   </div>
-                  
+
                   {/* Title - Always Visible */}
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="text-white font-bold text-lg mb-2">{service.title}</h3>
                   </div>
-                  
+
                   {/* Description - Visible on Hover */}
                   <div className="absolute inset-0 bg-blue-600/95 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
                     <div className="text-center">
@@ -730,48 +726,48 @@ function App() {
         </div>
       </section>
 
-{/* Cobertura de Servicios Section */}
+      {/* Cobertura de Servicios Section */}
 
-<section id="cobertura" className="py-20 bg-white dark:bg-gray-800">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<section id="mapa-cobertura" className="py-20 bg-white dark:bg-gray-900">
-  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white">
-      Cobertura en México
-    </h2>
+      <section id="cobertura" className="py-20 bg-white dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="mapa-cobertura" className="py-20 bg-white dark:bg-gray-900">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+                Cobertura en México
+              </h2>
 
-    <img
-      src={Mapa}
-      alt="Mapa de México con ciudades destacadas"
-      className="w-full h-auto rounded-xl shadow-lg"
-    />
-  </div>
-</section>
+              <img
+                src={Mapa}
+                alt="Mapa de México con ciudades destacadas"
+                className="w-full h-auto rounded-xl shadow-lg"
+              />
+            </div>
+          </section>
 
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-      {[
-        "Ciudad de México",
-        "Estado de México",
-        "Toluca",
-        "Puebla",
-        "Veracruz",
-        "Morelos",
-        "Querétaro",
-        "Tlaxcala",
-        "San Luis Potosí",
-        "Guanajuato",
-        "Pachuca, Hidalgo",
-      ].map((lugar, index) => (
-        <div key={index} className="text-center">
-          <div className="bg-blue-100 dark:bg-blue-900 rounded-lg p-6 mb-4">
-            <MapPin className="h-8 w-8 mx-auto mb-2 text-blue-600 dark:text-blue-400" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 pt-20">
+            {[
+              "Ciudad de México",
+              "Estado de México",
+              "Toluca",
+              "Puebla",
+              "Veracruz",
+              "Morelos",
+              "Querétaro",
+              "Tlaxcala",
+              "San Luis Potosí",
+              "Guanajuato",
+              "Pachuca, Hidalgo",
+            ].map((lugar, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-blue-100 dark:bg-blue-900 rounded-lg p-6 mb-4">
+                  <MapPin className="h-8 w-8 mx-auto mb-2 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="font-bold text-gray-900 dark:text-white">{lugar}</h3>
+              </div>
+            ))}
           </div>
-          <h3 className="font-bold text-gray-900 dark:text-white">{lugar}</h3>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
 
       {/* Beneficios y Alcances Section */}
@@ -780,7 +776,7 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
             Beneficios y Alcances
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {/* Beneficios Card */}
             <Card className="border-2 border-blue-200 dark:border-blue-800 dark:bg-gray-700">
@@ -801,9 +797,9 @@ function App() {
 
             {/* Image in the middle */}
             <div className="flex items-center justify-center">
-              <img 
-                src={beneficiosImage} 
-                alt="Beneficios Sharclean" 
+              <img
+                src={beneficiosImage}
+                alt="Beneficios Sharclean"
                 className="w-full h-full rounded-lg shadow-xl object-cover"
               />
             </div>
@@ -835,34 +831,34 @@ function App() {
             Nuestros Clientes
           </h2>
           <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-            Confiamos en brindar servicios de calidad a empresas líderes en diversos sectores: 
+            Confiamos en brindar servicios de calidad a empresas líderes en diversos sectores:
             oficinas corporativas, hospitales, instituciones educativas, centros comerciales y más.
           </p>
         </div>
 
         {/* Infinite Scrolling Banner */}
-<div className="relative overflow-hidden">
-  <div className="flex animate-scroll">
-    {/* Duplicamos exactamente 2 veces */}
-    {[...Array(2)].map((_, setIndex) => (
-      <>
-        {clients.map((client, index) => (
-          <div 
-            key={`client-${setIndex}-${index}`} 
-            className="flex-shrink-0 mx-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
-            style={{ width: '200px', height: '120px' }}
-          >
-            <img 
-              src={client.logo} 
-              alt={client.name}
-              className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-            />
+        <div className="relative overflow-hidden">
+          <div className="flex animate-scroll">
+            {/* Duplicamos exactamente 2 veces */}
+            {[...Array(2)].map((_, setIndex) => (
+              <>
+                {clients.map((client, index) => (
+                  <div
+                    key={`client-${setIndex}-${index}`}
+                    className="flex-shrink-0 mx-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                    style={{ width: '200px', height: '120px' }}
+                  >
+                    <img
+                      src={client.logo}
+                      alt={client.name}
+                      className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                ))}
+              </>
+            ))}
           </div>
-        ))}
-      </>
-    ))}
-  </div>
-</div>
+        </div>
       </section>
 
       {/* Contacto Section */}
@@ -903,7 +899,7 @@ function App() {
               </CardContent>
             </Card>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <CardHeader>
@@ -998,7 +994,7 @@ function App() {
               <strong>SHARCLEAN SA DE CV</strong> es responsable del tratamiento de sus datos personales, los cuales serán utilizados exclusivamente para proporcionar servicios de limpieza, gestionar solicitudes, elaborar cotizaciones, contratos y facturación. Sus datos podrán compartirse con proveedores necesarios para la operación o con autoridades competentes.
             </p>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Puede ejercer sus derechos ARCO (Acceso, Rectificación, Cancelación u Oposición) o solicitar más información sobre nuestro Aviso de Privacidad Integral enviando un correo a: 
+              Puede ejercer sus derechos ARCO (Acceso, Rectificación, Cancelación u Oposición) o solicitar más información sobre nuestro Aviso de Privacidad Integral enviando un correo a:
               <a href="mailto:sharifmtz@sharclean.com.mx" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 sharifmtz@sharclean.com.mx
               </a>
@@ -1048,36 +1044,36 @@ function App() {
             <div className="text-center md:text-right">
               <h3 className="text-xl font-bold mb-4 text-white">Síguenos</h3>
               <div className="flex justify-center md:justify-end gap-4 mb-6">
-                <a 
-                  href="https://facebook.com" 
-                  target="_blank" 
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-blue-600 p-3 rounded-full transition-all duration-300 hover:scale-110"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a 
-                  href="https://instagram.com" 
-                  target="_blank" 
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-pink-600 p-3 rounded-full transition-all duration-300 hover:scale-110"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-blue-500 p-3 rounded-full transition-all duration-300 hover:scale-110"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-sky-500 p-3 rounded-full transition-all duration-300 hover:scale-110"
                   aria-label="Twitter"
@@ -1096,9 +1092,9 @@ function App() {
               </p>
               <p className="text-gray-500 text-sm">
                 Página web creada por{' '}
-                <a 
-                  href="https://luminadigitalstudio.netlify.app/" 
-                  target="_blank" 
+                <a
+                  href="https://luminadigitalstudio.netlify.app/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-400 hover:text-blue-300 transition font-medium"
                 >
@@ -1117,13 +1113,12 @@ function App() {
         href="https://wa.me/5215529729014"
         target="_blank"
         rel="noopener noreferrer"
-        className={`fixed bottom-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-500 hover:scale-110 z-50 flex items-center justify-center group ${
-          showNavAndButtons ? 'right-6 opacity-100 scale-100' : '-right-20 opacity-0 scale-0'
-        }`}
+        className={`fixed bottom-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-500 hover:scale-110 z-50 flex items-center justify-center group ${showNavAndButtons ? 'right-6 opacity-100 scale-100' : '-right-20 opacity-0 scale-0'
+          }`}
         aria-label="Contactar por WhatsApp"
       >
         <svg className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
         </svg>
         <span className="absolute right-full mr-3 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           Escríbenos por WhatsApp
@@ -1133,9 +1128,8 @@ function App() {
       {/* Call Button - Only visible on mobile after scrolling past hero */}
       <a
         href="tel:5529729014"
-        className={`md:hidden fixed bottom-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl transition-all duration-500 hover:scale-110 z-50 flex items-center justify-center group ${
-          showNavAndButtons ? 'left-6 opacity-100 scale-100' : '-left-20 opacity-0 scale-0'
-        }`}
+        className={`md:hidden fixed bottom-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl transition-all duration-500 hover:scale-110 z-50 flex items-center justify-center group ${showNavAndButtons ? 'left-6 opacity-100 scale-100' : '-left-20 opacity-0 scale-0'
+          }`}
         aria-label="Llamar ahora"
       >
         <Phone className="h-7 w-7" />
