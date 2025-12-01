@@ -41,6 +41,7 @@ import slider3 from './assets/hero/slider-3.jpg'
 import slider4 from './assets/hero/slider-4.jpg'
 import slider5 from './assets/hero/slider-5.jpg'
 import slider6 from './assets/hero/slider-6.jpg'
+import Mapa from './assets/mapa.png'
 
 // Import logo and about image
 import logo from './assets/logo.png'
@@ -179,16 +180,10 @@ function App() {
 
   const services = [
     { icon: Sparkles, title: 'Limpieza Profesional e Industrial', description: 'Servicios especializados de limpieza para espacios comerciales e industriales.', image: servicio7prueba },
-    { icon: Building2, title: 'Mantenimiento a Inmuebles', description: 'Mantenimiento integral para conservar sus instalaciones en óptimas condiciones.', image: servicio5 },
     { icon: Droplets, title: 'Limpieza en Alturas', description: 'Especialistas en limpieza de fachadas y espacios de difícil acceso.', image: servicio3 },
     { icon: Sofa, title: 'Lavado de Alfombra o Tapicería', description: 'Limpieza profunda de alfombras y muebles tapizados.', image: servicio4 },
     { icon: Paintbrush, title: 'Lavado Correctivo de Pisos', description: 'Restauración y mantenimiento especializado de todo tipo de pisos.', image: servicio2 },
-    { icon: Leaf, title: 'Manejo y Separación de Residuos', description: 'Gestión responsable y clasificación de residuos.', image: servicio6 },
     { icon: Leaf, title: 'Jardinería', description: 'Diseño, mantenimiento y cuidado de áreas verdes.', image: servicio7 },
-    { icon: Zap, title: 'Instalaciones Eléctricas e Iluminación', description: 'Instalación y mantenimiento de sistemas eléctricos.', image: servicio8 },
-    { icon: Wrench, title: 'Plomería', description: 'Servicios de plomería profesional y reparaciones.', image: servicio9 },
-    { icon: Paintbrush, title: 'Pintura', description: 'Trabajos de pintura interior y exterior.', image: servicio10 },
-    { icon: Hammer, title: 'Albañilería y Acabados', description: 'Construcción, remodelación y acabados de calidad.', image: servicio11 },
     { icon: Bug, title: 'Fumigación', description: 'Control de plagas con productos certificados.', image: servicio12 },
   ]
 
@@ -252,6 +247,9 @@ function App() {
               <button onClick={() => scrollToSection('contacto')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Contacto
               </button>
+              <button onClick={() => scrollToSection('aviso-privacidad')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
+                Aviso de Privacidad
+              </button>
               
               {/* Dark Mode Toggle */}
               <button
@@ -300,6 +298,9 @@ function App() {
               </button>
               <button onClick={() => scrollToSection('contacto')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Contacto
+              </button>
+              <button onClick={() => scrollToSection('aviso-privacidad')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
+                Aviso de Privacidad
               </button>
             </div>
           </div>
@@ -333,6 +334,9 @@ function App() {
               <button onClick={() => scrollToSection('contacto')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
                 Contacto
               </button>
+              <button onClick={() => scrollToSection('aviso-privacidad')} className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">
+                Aviso de Privacidad
+              </button>
               
               {/* Dark Mode Toggle */}
               <button
@@ -381,6 +385,9 @@ function App() {
               </button>
               <button onClick={() => scrollToSection('contacto')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
                 Contacto
+              </button>
+              <button onClick={() => scrollToSection('aviso-privacidad')} className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 rounded transition">
+                Aviso de Privacidad
               </button>
             </div>
           </div>
@@ -519,7 +526,7 @@ function App() {
 
           <Button 
             size="lg" 
-            className="text-lg px-8 py-6 mt-4"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
             onClick={() => scrollToSection('contacto')}
           >
             Solicita tu presupuesto
@@ -723,6 +730,50 @@ function App() {
         </div>
       </section>
 
+{/* Cobertura de Servicios Section */}
+
+<section id="cobertura" className="py-20 bg-white dark:bg-gray-800">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="mapa-cobertura" className="py-20 bg-white dark:bg-gray-900">
+  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+      Cobertura en México
+    </h2>
+
+    <img
+      src={Mapa}
+      alt="Mapa de México con ciudades destacadas"
+      className="w-full h-auto rounded-xl shadow-lg"
+    />
+  </div>
+</section>
+
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      {[
+        "Ciudad de México",
+        "Estado de México",
+        "Toluca",
+        "Puebla",
+        "Veracruz",
+        "Morelos",
+        "Querétaro",
+        "Tlaxcala",
+        "San Luis Potosí",
+        "Guanajuato",
+        "Pachuca, Hidalgo",
+      ].map((lugar, index) => (
+        <div key={index} className="text-center">
+          <div className="bg-blue-100 dark:bg-blue-900 rounded-lg p-6 mb-4">
+            <MapPin className="h-8 w-8 mx-auto mb-2 text-blue-600 dark:text-blue-400" />
+          </div>
+          <h3 className="font-bold text-gray-900 dark:text-white">{lugar}</h3>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
       {/* Beneficios y Alcances Section */}
       <section id="beneficios" className="py-20 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -823,7 +874,37 @@ function App() {
           <p className="text-xl mb-12">
             Estamos listos para atender sus necesidades de limpieza y mantenimiento
           </p>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+              <CardHeader>
+                <div className="flex items-center justify-center gap-3">
+                  <Phone className="h-8 w-8" />
+                  <CardTitle className="text-white">Solicita una Cotización</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <a href="tel:5529729014" className="text-2xl font-bold hover:text-blue-200 transition">
+                  55 2972 9014
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+              <CardHeader>
+                <div className="flex items-center justify-center gap-3">
+                  <MessageCircle className="h-8 w-8" />
+                  <CardTitle className="text-white">Reclutamiento o Buscas empleo</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <a href="https://wa.me/5215531398129" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold hover:text-blue-200 transition">
+                  WhatsApp: 55 3139 8129
+                </a>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <CardHeader>
                 <div className="flex items-center justify-center gap-3">
@@ -906,6 +987,25 @@ function App() {
         </div>
       </section>
 
+      {/* Aviso de Privacidad Section */}
+      <section id="aviso-privacidad" className="py-16 bg-gray-100 dark:bg-gray-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+            Aviso de Privacidad
+          </h2>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+              <strong>SHARCLEAN SA DE CV</strong> es responsable del tratamiento de sus datos personales, los cuales serán utilizados exclusivamente para proporcionar servicios de limpieza, gestionar solicitudes, elaborar cotizaciones, contratos y facturación. Sus datos podrán compartirse con proveedores necesarios para la operación o con autoridades competentes.
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              Puede ejercer sus derechos ARCO (Acceso, Rectificación, Cancelación u Oposición) o solicitar más información sobre nuestro Aviso de Privacidad Integral enviando un correo a: 
+              <a href="mailto:sharifmtz@sharclean.com.mx" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                sharifmtz@sharclean.com.mx
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
       {/* Footer */}
       <footer className="bg-gray-900 dark:bg-black text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1009,6 +1109,7 @@ function App() {
           </div>
         </div>
       </footer>
+
 
       {/* Floating Action Buttons */}
       {/* WhatsApp Button - Visible after scrolling past hero */}
