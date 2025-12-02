@@ -995,8 +995,8 @@ function App() {
             </p>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               Puede ejercer sus derechos ARCO (Acceso, Rectificación, Cancelación u Oposición) o solicitar más información sobre nuestro Aviso de Privacidad Integral enviando un correo a:
-              <a href="mailto:sharifmtz@sharclean.com.mx" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                sharifmtz@sharclean.com.mx
+              <a href="mailto:información@sharclean.com.mx" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                información@sharclean.com.mx
               </a>
             </p>
           </div>
